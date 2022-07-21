@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 
 import html2canvas from "html2canvas";
 import "./sems.css";
-import {calculateSgpa9} from "../../GradePointCalc";
+import { calculateSgpa9 } from "../../GradePointCalc";
 import TextField from "@mui/material/TextField";
 import { jsPDF } from "jspdf";
-
+import { auth } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 function ThirdSem() {
   const [sub1, setSub1] = React.useState();
   const [sub2, setSub2] = React.useState();
@@ -16,8 +17,8 @@ function ThirdSem() {
   const [sub7, setSub7] = React.useState();
   const [sub8, setSub8] = React.useState();
   const [sub9, setSub9] = React.useState();
-  const [ans, setAns]   = React.useState();
-
+  const [ans, setAns] = React.useState();
+  const [user, loading, error] = useAuthState(auth);
   const calc = () => {
     setAns(
       calculateSgpa9(
@@ -38,7 +39,8 @@ function ThirdSem() {
         sub8,
         2,
         sub9,
-        1
+        1,
+        3
       )
     );
   };
@@ -124,11 +126,9 @@ function ThirdSem() {
           value={sub9}
           onChange={(e) => setSub9(e.target.value)}
         />
-
-         
       </div>
-      <div className="bt" >
-      <button onClick={calc} className="css-button-rounded--rose">
+      <div className="bt">
+        <button onClick={calc} className="css-button-rounded--rose">
           Calculate SGPA
         </button>
         <button onClick={printDocument} className="css-button-rounded--rose">
@@ -138,7 +138,9 @@ function ThirdSem() {
       {ans ? (
         <div className="result">
           <h2>SGPA:&nbsp;&nbsp;{ans.toFixed(2)}</h2>
-          <h2>Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%</h2>
+          <h2>
+            Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%
+          </h2>
         </div>
       ) : (
         <div className="result"></div>
@@ -147,4 +149,4 @@ function ThirdSem() {
   );
 }
 
-export default ThirdSem
+export default ThirdSem;

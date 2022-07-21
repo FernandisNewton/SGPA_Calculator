@@ -2,12 +2,12 @@ import React, { useRef } from "react";
 
 import html2canvas from "html2canvas";
 import "./sems.css";
-import {calculateSgpa} from "../../GradePointCalc";
+import { calculateSgpa } from "../../GradePointCalc";
 import TextField from "@mui/material/TextField";
 import { jsPDF } from "jspdf";
 
 function SixthSem() {
-    const [sub1, setSub1] = React.useState();
+  const [sub1, setSub1] = React.useState();
   const [sub2, setSub2] = React.useState();
   const [sub3, setSub3] = React.useState();
   const [sub4, setSub4] = React.useState();
@@ -36,6 +36,7 @@ function SixthSem() {
         2,
         sub8,
         2,
+        6
       )
     );
   };
@@ -114,12 +115,9 @@ function SixthSem() {
           value={sub8}
           onChange={(e) => setSub8(e.target.value)}
         />
-        
-
-         
       </div>
-      <div className="bt" >
-      <button onClick={calc} className="css-button-rounded--rose">
+      <div className="bt">
+        <button onClick={calc} className="css-button-rounded--rose">
           Calculate SGPA
         </button>
         <button onClick={printDocument} className="css-button-rounded--rose">
@@ -129,7 +127,9 @@ function SixthSem() {
       {ans ? (
         <div className="result">
           <h2>SGPA:&nbsp;&nbsp;{ans.toFixed(2)}</h2>
-          <h2>Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%</h2>
+          <h2>
+            Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%
+          </h2>
         </div>
       ) : (
         <div className="result"></div>
@@ -138,4 +138,4 @@ function SixthSem() {
   );
 }
 
-export default SixthSem
+export default SixthSem;

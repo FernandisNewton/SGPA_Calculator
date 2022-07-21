@@ -2,19 +2,19 @@ import React, { useRef } from "react";
 
 import html2canvas from "html2canvas";
 import "../sems.css";
-import {calculateSgpa} from "../../../GradePointCalc";
+import { calculateSgpa } from "../../../GradePointCalc";
 import TextField from "@mui/material/TextField";
 import { jsPDF } from "jspdf";
 
 function CSE() {
-    const [sub1, setSub1] = React.useState();
+  const [sub1, setSub1] = React.useState();
   const [sub2, setSub2] = React.useState();
   const [sub3, setSub3] = React.useState();
   const [sub4, setSub4] = React.useState();
   const [sub5, setSub5] = React.useState();
   const [sub6, setSub6] = React.useState();
   const [sub7, setSub7] = React.useState();
- 
+
   const [ans, setAns] = React.useState();
 
   const calc = () => {
@@ -35,7 +35,8 @@ function CSE() {
         sub7,
         1,
         0,
-        0   
+        0,
+        7
       )
     );
   };
@@ -107,12 +108,9 @@ function CSE() {
           value={sub7}
           onChange={(e) => setSub7(e.target.value)}
         />
-       
-
-         
       </div>
-      <div className="bt" >
-      <button onClick={calc} className="css-button-rounded--rose">
+      <div className="bt">
+        <button onClick={calc} className="css-button-rounded--rose">
           Calculate SGPA
         </button>
         <button onClick={printDocument} className="css-button-rounded--rose">
@@ -122,7 +120,9 @@ function CSE() {
       {ans ? (
         <div className="result">
           <h2>SGPA:&nbsp;&nbsp;{ans.toFixed(2)}</h2>
-          <h2>Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%</h2>
+          <h2>
+            Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%
+          </h2>
         </div>
       ) : (
         <div className="result"></div>
@@ -131,4 +131,4 @@ function CSE() {
   );
 }
 
-export default CSE
+export default CSE;

@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 
 import html2canvas from "html2canvas";
 import "../sems.css";
-import {calculateSgpa} from "../../../GradePointCalc";
+import { calculateSgpa } from "../../../GradePointCalc";
 import TextField from "@mui/material/TextField";
 import { jsPDF } from "jspdf";
 
@@ -35,7 +35,8 @@ function EC() {
         sub7,
         2,
         sub8,
-        2   
+        2,
+        7
       )
     );
   };
@@ -114,12 +115,9 @@ function EC() {
           value={sub8}
           onChange={(e) => setSub8(e.target.value)}
         />
-       
-
-         
       </div>
-      <div className="bt" >
-      <button onClick={calc} className="css-button-rounded--rose">
+      <div className="bt">
+        <button onClick={calc} className="css-button-rounded--rose">
           Calculate SGPA
         </button>
         <button onClick={printDocument} className="css-button-rounded--rose">
@@ -129,7 +127,9 @@ function EC() {
       {ans ? (
         <div className="result">
           <h2>SGPA:&nbsp;&nbsp;{ans.toFixed(2)}</h2>
-          <h2>Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%</h2>
+          <h2>
+            Percentage:&nbsp;&nbsp;{ans ? ((ans - 0.75) * 10).toFixed(2) : 0}%
+          </h2>
         </div>
       ) : (
         <div className="result"></div>
@@ -138,4 +138,4 @@ function EC() {
   );
 }
 
-export default EC
+export default EC;

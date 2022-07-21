@@ -1,3 +1,5 @@
+import { setData } from "./firebase";
+
 function GradePointCalc(sub) {
   if (sub >= 90) {
     return 10;
@@ -34,21 +36,34 @@ export function calculateSgpa(
   sub7,
   cred7,
   sub8,
-  cred8
+  cred8,
+  sem
 ) {
   const sum =
-    (GradePointCalc(sub1) * cred1) +
-    (GradePointCalc(sub2) * cred2) +
-    (GradePointCalc(sub3) * cred3) +
-    (GradePointCalc(sub4) * cred4) +
-    (GradePointCalc(sub5) * cred5) +
-    (GradePointCalc(sub6) * cred6) +
-    (GradePointCalc(sub7) * cred7) +
-    (GradePointCalc(sub8) * cred8);
+    GradePointCalc(sub1) * cred1 +
+    GradePointCalc(sub2) * cred2 +
+    GradePointCalc(sub3) * cred3 +
+    GradePointCalc(sub4) * cred4 +
+    GradePointCalc(sub5) * cred5 +
+    GradePointCalc(sub6) * cred6 +
+    GradePointCalc(sub7) * cred7 +
+    GradePointCalc(sub8) * cred8;
 
- const totalCredit = cred1+cred2+cred3+cred4+cred5+cred6+cred7+cred8;
-
- return sum/totalCredit;
+  const totalCredit =
+    cred1 + cred2 + cred3 + cred4 + cred5 + cred6 + cred7 + cred8;
+  const marks = {
+    sub1: sub1,
+    sub2: sub2,
+    sub3: sub3,
+    sub4: sub4,
+    sub5: sub5,
+    sub6: sub6,
+    sub7: sub7,
+    sub8: sub8,
+  };
+  const sgpa = sum / totalCredit;
+  setData(sem, marks, sgpa);
+  return sgpa;
 }
 
 export function calculateSgpa9(
@@ -69,38 +84,48 @@ export function calculateSgpa9(
   sub8,
   cred8,
   sub9,
-  cred9
+  cred9,
+  sem
 ) {
   const sum =
-    (GradePointCalc(sub1) * cred1) +
-    (GradePointCalc(sub2) * cred2) +
-    (GradePointCalc(sub3) * cred3) +
-    (GradePointCalc(sub4) * cred4) +
-    (GradePointCalc(sub5) * cred5) +
-    (GradePointCalc(sub6) * cred6) +
-    (GradePointCalc(sub7) * cred7) +
-    (GradePointCalc(sub8) * cred8) +
-    (GradePointCalc(sub9) * cred9);
+    GradePointCalc(sub1) * cred1 +
+    GradePointCalc(sub2) * cred2 +
+    GradePointCalc(sub3) * cred3 +
+    GradePointCalc(sub4) * cred4 +
+    GradePointCalc(sub5) * cred5 +
+    GradePointCalc(sub6) * cred6 +
+    GradePointCalc(sub7) * cred7 +
+    GradePointCalc(sub8) * cred8 +
+    GradePointCalc(sub9) * cred9;
 
+  const totalCredit =
+    cred1 + cred2 + cred3 + cred4 + cred5 + cred6 + cred7 + cred8 + cred9;
 
- const totalCredit = cred1+cred2+cred3+cred4+cred5+cred6+cred7+cred8+cred9;
-
- return sum/totalCredit;
+  const marks = {
+    su1: sub1,
+    sub2: sub2,
+    sub3: sub3,
+    sub4: sub4,
+    sub5: sub5,
+    sub6: sub6,
+    sub7: sub7,
+    sub8: sub8,
+    sub9: sub9,
+  };
+  const sgpa = sum / totalCredit;
+  setData(sem, marks, sgpa);
+  return sgpa;
 }
 
-export function cgpacalc(res){
-   
-   var sum = 0;
-   var count = 0;
-   for(let i=0;i<res.length;i++){
-      if(res[i]!=="0") count++; 
-      sum+=Number(res[i]);
-   }
+export function cgpacalc(res) {
+  var sum = 0;
+  var count = 0;
+  for (let i = 0; i < res.length; i++) {
+    if (res[i] !== "0") count++;
+    sum += Number(res[i]);
+  }
 
-   console.log(count);
-    
+  console.log(count);
 
-   return sum/count;
+  return sum / count;
 }
-
-

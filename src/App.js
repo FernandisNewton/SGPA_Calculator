@@ -12,26 +12,32 @@ import CSE from "./pages/sems/7thSem/CSE";
 import EighthSem from "./pages/sems/EighthSem";
 import EC from "./pages/sems/7thSem/EC";
 import CGPACalc from "./pages/CGPACalc";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./pages/login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Register from "./pages/Register";
+import MarksPage from "./pages/MarksPage";
 function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/sem" component={Sem} />
-          <Route path="/fistsemphy" component={FirstSemPhy} />
-          <Route path="/fistsemchem" component={FirstSemchem} />
-          <Route path="/thirdsem" component={ThirdSem} />
-          <Route path="/fourthsem" component={FourthSem} />
-          <Route path="/fifthsem" component={FifthSem} />
-          <Route path="/sixthsem" component={SixthSem} />
-          <Route path="/branch7" component={Branch7} />
-          <Route path="/cse7" component={CSE} />
-          <Route path="/ec7" component={EC} />
-          <Route path="/eightsem" component={EighthSem} />
-          <Route path="/cgpacalc" component={CGPACalc} />
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/marks" element={<MarksPage />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/sem" element={<Sem />} />
+          <Route path="/fistsemphy" element={<FirstSemPhy />} />
+          <Route path="/fistsemchem" element={<FirstSemchem />} />
+          <Route path="/thirdsem" element={<ThirdSem />} />
+          <Route path="/fourthsem" element={<FourthSem />} />
+          <Route path="/fifthsem" element={<FifthSem />} />
+          <Route path="/sixthsem" element={<SixthSem />} />
+          <Route path="/branch7" element={<Branch7 />} />
+          <Route path="/cse7" element={<CSE />} />
+          <Route path="/ec7" element={<EC />} />
+          <Route path="/eightsem" element={<EighthSem />} />
+          <Route path="/cgpacalc" element={<CGPACalc />} />
+        </Routes>
       </div>
     </Router>
   );
